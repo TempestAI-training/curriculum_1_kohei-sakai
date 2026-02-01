@@ -31,7 +31,7 @@ jobs:
           echo "$LINE" | grep -q 'chmod' \
             || (echo "chmod コマンドが含まれていません" && exit 1)
 
-          echo "$LINE" | grep -Eq '^chmod[[:space:]]+(.+)?(+x|[0-7]{3}|u+x|a+x)[[:space:]]+check.sh$' \    
+          echo "$LINE" | grep -Eq '^chmod[[:space:]]+(.+)?(+x|[0-7]{3}|u+x|a+x)[[:space:]]+check.sh$' \
             || (echo "check.sh に実行権限を付与していません" && exit 1)
 
       # --- 課題Cの確認 ---
