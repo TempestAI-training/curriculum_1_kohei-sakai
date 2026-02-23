@@ -1,0 +1,14 @@
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+venv
+ENV
+node_modules
+.git
+.gitignore
+.dockervenv
+docker-compose.override.yml

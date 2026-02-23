@@ -1,0 +1,29 @@
+version: '3'
+services:
+  backend:
+    build: .
+    volumes:
+      - .dockervenv:/src/.venv
+      - .:/src
+    ports:
+      - 8000:8000
+    environment:
+      - PYTHONPATH=/src/backend
+      - OPENAI_API_KEY=${AZURE_OPENAI_KEY}
+      - OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: chatlog
+      TZ: Asia/Tokyo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_data:
