@@ -1,6 +1,6 @@
 import os
 import uuid
-from openai import AsyncOpenAI, error as openai_error
+from openai import AsyncOpenAI, OpenAIError as openai_error
 from sqlalchemy.ext.asyncio import AsyncSession
 import logging
 
