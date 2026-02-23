@@ -1,7 +1,8 @@
 import os
 import uuid
-from openai import AsyncOpenAI
+from openai import AsyncOpenAI, error as openai_error
 from sqlalchemy.ext.asyncio import AsyncSession
+import logging
 
 from api.schemas.chat import MessageCreate
 from api.models.chat import Message
@@ -16,7 +17,7 @@ client = AsyncOpenAI(
 )
 
 async def chat_service(db: AsyncSession, message: MessageCreate):
-
+    # UUIDをconversation_idに設定
     if not message.conversation_id:
         message.conversation_id = str(uuid.uuid4())
         
@@ -38,14 +39,22 @@ async def chat_service(db: AsyncSession, message: MessageCreate):
         for m in history
     ]
 
-    response = await client.chat.completions.create(
-        model=os.getenv("OPENAI_DEPLOYMENT"),
-        messages=gpt_messages,
-        extra_query={"api-version": "2025-01-01-preview"},
-    )
+    # OpenAI APIにリクエストを送信
+    try:
+        response = await client.chat.completions.create(
+            model=os.getenv("OPENAI_DEPLOYMENT"),
+            messages=gpt_messages,
+            extra_query={"api-version": "2025-01-01-preview"},
+        )
 
-    assistant_content = response.choices[0].message.content
+        assistant_content = response.choices[0].message.content
+        
+    except openai_error.OpenAIError as e:
+        # APIエラー時の処理
+        logging.error(f"OpenAI API error: {e}")
+        assistant_content = "申し訳ありません。現在、回答を生成できません。"
 
+    # アシスタントのメッセージを保存
     assistant_message = Message(
         conversation_id=message.conversation_id,
         role="assistant",
