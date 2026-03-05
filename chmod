@@ -1,0 +1,5 @@
+      PID    PPID    PGID     WINPID   TTY         UID    STIME COMMAND
+      870       1     870       2796  ?         197609   Feb 16 /usr/bin/mintty
+     1576     871    1576      46180  pty0      197609 18:45:12 /usr/bin/PS
+      871     870     871      25932  pty0      197609   Feb 16 /usr/bin/bash
+      838       1     838      17716  ?         197609   Feb 15 /usr/bin/ssh-agent
