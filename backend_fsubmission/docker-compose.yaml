@@ -5,7 +5,6 @@ services:
     ports:
       - 8000:8000
     environment:
-      - PYTHONPATH=/src/backend
       - OPENAI_API_KEY=${AZURE_OPENAI_KEY}
       - OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
       - OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}
