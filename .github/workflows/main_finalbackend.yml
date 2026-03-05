@@ -20,20 +20,20 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies and validate
-        working-directory: backend_fsubmission
+      - name: Install dependencies
+        working-directory: backend_fsubmission/backend
         run: |
           python -m venv antenv
           source antenv/bin/activate
           pip install -r requirements.txt
 
-      # Upload only the CONTENTS of backend_fsubmission (not the folder itself)
+      # Upload only the CONTENTS of backend_fsubmission/backend
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: backend_fsubmission/*
-          include-hidden-files: false
+          path: backend_fsubmission/backend/*
+          include-hidden-files: true  # __init__.py なども必須なので true に
 
   deploy:
     runs-on: ubuntu-latest
