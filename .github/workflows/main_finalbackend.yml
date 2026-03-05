@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'backend_fsubmission/**'
   workflow_dispatch:
 
 jobs:
@@ -20,16 +22,20 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install dependencies and validate
+        working-directory: backend_fsubmission
         run: |
-          pip install poetry
-          poetry install --no-root
+          python -m venv antenv
+          source antenv/bin/activate
+          pip install -r requirements.txt
 
-      - name: Upload artifact
+      # Upload only the CONTENTS of backend_fsubmission (not the folder itself)
+      - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: .
+          path: backend_fsubmission/*
+          include-hidden-files: false
 
   deploy:
     runs-on: ubuntu-latest
@@ -39,7 +45,7 @@ jobs:
       contents: read
 
     steps:
-      - name: Download artifact
+      - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: python-app
