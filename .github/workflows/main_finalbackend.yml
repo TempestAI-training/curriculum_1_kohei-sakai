@@ -25,7 +25,7 @@ jobs:
 
       - name: Install dependencies (build check only)
         run: |
-          cd backend_fsubmission/backend
+          cd backend_fsubmission
           pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
@@ -33,9 +33,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: python-backend
-          path: |
-            backend_fsubmission/backend/*
-            !backend_fsubmission/backend/antenv
+          path: backend_fsubmission/*
           include-hidden-files: true
 
   deploy:
