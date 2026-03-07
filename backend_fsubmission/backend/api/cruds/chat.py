@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
-from api.models.chat import Message
-from api.schemas.chat import MessageCreate
+from backend.api.models.chat import Message
+from backend.api.schemas.chat import MessageCreate
 import uuid
 
 

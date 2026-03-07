@@ -5,9 +5,9 @@ from pydantic import BaseModel
 from openai import OpenAI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.routers import chat as chat_router
-from api.models.db import Base, async_engine
-from api.models import chat
+from backend.api.routers import chat as chat_router
+from backend.api.models.db import Base, async_engine
+from backend.api.models import chat
 
 from dotenv import load_dotenv
 

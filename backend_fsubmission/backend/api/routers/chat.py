@@ -3,11 +3,11 @@ from typing import List
 from fastapi import APIRouter
 from fastapi import Depends
 
-from api.services.chat import chat_service
-import api.schemas.chat as chat_schema
-from api.models.chat import Message
-from api.models.db import get_db
-from api.cruds.chat import get_messages, create_message
+from backend.api.services.chat import chat_service
+import backend.api.schemas.chat as chat_schema
+from backend.api.models.chat import Message
+from backend.api.models.db import get_db
+from backend.api.cruds.chat import get_messages, create_message
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select

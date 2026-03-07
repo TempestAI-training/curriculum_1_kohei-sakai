@@ -4,9 +4,9 @@ from openai import AsyncOpenAI, OpenAIError as openai_error
 from sqlalchemy.ext.asyncio import AsyncSession
 import logging
 
-from api.schemas.chat import MessageCreate
-from api.models.chat import Message
-from api.cruds.chat import (
+from backend.api.schemas.chat import MessageCreate
+from backend.api.models.chat import Message
+from backend.api.cruds.chat import (
     create_message,
     get_messages_by_conversation,
 )
