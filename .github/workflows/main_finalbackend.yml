@@ -34,7 +34,7 @@ jobs:
         with:
           name: python-backend
           path: |
-            backend_fsubmission/backend
+            backend_fsubmission/backend/*
             !backend_fsubmission/backend/antenv
           include-hidden-files: true
 
