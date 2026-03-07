@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,8 +35,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: python-backend
-          path: backend_fsubmission/backend/*
-          include-hidden-files: true  # __init__.py なども必須
+          path: backend_fsubmission/backend
+          include-hidden-files: true
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,6 +59,6 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'finalbackend'
-          slot-name: 'Production'
+          app-name: finalbackend
+          slot-name: Production
           package: deploy
