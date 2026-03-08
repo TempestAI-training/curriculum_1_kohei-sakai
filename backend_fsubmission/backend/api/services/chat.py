@@ -12,8 +12,8 @@ from backend.api.cruds.chat import (
 )
 
 client = AsyncOpenAI(
-    api_key=os.getenv("OPENAI_API_KEY"),
-    base_url=os.getenv("OPENAI_ENDPOINT") + "/openai/deployments/" + os.getenv("OPENAI_DEPLOYMENT")
+    api_key=os.getenv("AZURE_OPENAI_KEY"),
+    base_url=os.getenv("AZURE_OPENAI_ENDPOINT") + "/openai/deployments/" + os.getenv("AZURE_OPENAI_DEPLOYMENT")
 )
 
 async def chat_service(db: AsyncSession, message: MessageCreate):
