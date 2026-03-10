@@ -4,7 +4,7 @@ import os
 
 ASYNC_DB_URL = os.getenv("DATABASE_URL")
 
-async_engine = create_async_engine(ASYNC_DB_URL, echo=True)
+async_engine = create_async_engine(ASYNC_DB_URL, echo=True, connect_args={"ssl": True})
 async_session = sessionmaker(
     autocommit=False, autoflush=False, bind=async_engine, class_=AsyncSession
 )
