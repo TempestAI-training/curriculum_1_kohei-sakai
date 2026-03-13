@@ -4,10 +4,8 @@ services:
     build: .
     ports:
       - 8000:8000
-    environment:
-      - OPENAI_API_KEY=${AZURE_OPENAI_KEY}
-      - OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
-      - OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}
+    env_file:
+      - .env
 
   db:
     image: postgres:15
